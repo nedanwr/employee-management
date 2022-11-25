@@ -59,12 +59,6 @@ export const LoginPage: NextPage = (): JSX.Element => {
                             placeholder={"•••••••••••"}
                             required
                         />
-                        <p
-                            id={`password_note`}
-                            className={`italic text-xs font-medium text-gray-500 mt-1`}
-                        >
-                            *Note: Passwords are case-sensitive, and must be at least 8 characters long.
-                        </p>
                     </div>
                     <Button
                         className={`bg-amber-400 border-2 border-amber-400 text-black font-medium px-48 py-3.5 w-full mt-4 rounded-md hover:text-amber-400 hover:bg-black hover:border-amber-400 transition duration-500`}
