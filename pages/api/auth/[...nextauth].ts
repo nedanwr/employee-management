@@ -40,7 +40,10 @@ export default NextAuth({
                     return Promise.reject(new Error("Incorrect password"));
                 }
 
-                return null;
+                return Promise.resolve(user)
+                    .finally(async () => {
+                        await prisma.$disconnect();
+                    });
             }
         }),
     ],
