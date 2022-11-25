@@ -1,8 +1,18 @@
+import React, {
+    useState,
+    ChangeEvent
+} from "react";
 import type { NextPage } from "next";
 import Head from "next/head";
-import {Button, Input, Label} from "../../ui";
+import { Button, Input, Label } from "../../ui";
 
 export const RegisterPage: NextPage = (): JSX.Element => {
+    // State
+    const [loading, setLoading] = useState<boolean>(false);
+    const [email, setEmail] = useState<string>("");
+    const [fullName, setFullName] = useState<string>("");
+    const [password, setPassword] = useState<string>("");
+
     return (
         <>
             <Head>
@@ -29,6 +39,10 @@ export const RegisterPage: NextPage = (): JSX.Element => {
                             aria-label={`severus@hogwarts.edu`}
                             className={`form-control`}
                             placeholder={`severus@hogwarts.edu`}
+                            value={email}
+                            onChange={
+                                (e: ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)
+                            }
                             required
                         />
                     </div>
@@ -45,6 +59,10 @@ export const RegisterPage: NextPage = (): JSX.Element => {
                             aria-label={`Severus Snape`}
                             className={`form-control`}
                             placeholder={`Severus Snape`}
+                            value={fullName}
+                            onChange={
+                                (e: ChangeEvent<HTMLInputElement>) => setFullName(e.target.value)
+                            }
                             required
                         />
                     </div>
@@ -61,6 +79,10 @@ export const RegisterPage: NextPage = (): JSX.Element => {
                             aria-label={`•••••••••••`}
                             className={`form-control`}
                             placeholder={"•••••••••••"}
+                            value={password}
+                            onChange={
+                                (e: ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)
+                            }
                             required
                         />
                         <p
