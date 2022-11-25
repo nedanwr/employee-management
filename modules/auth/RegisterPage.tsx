@@ -6,7 +6,7 @@ export const RegisterPage: NextPage = (): JSX.Element => {
     return (
         <>
             <Head>
-                <title>Log In</title>
+                <title>Register</title>
             </Head>
             <div className={`grid place-items-center h-screen w-screen bg-zinc-800 text-white`}>
                 <form
@@ -47,28 +47,6 @@ export const RegisterPage: NextPage = (): JSX.Element => {
                             placeholder={`Severus Snape`}
                             required
                         />
-                    </div>
-                    {/* Username Input */}
-                    <div className={`form-group flex flex-col`}>
-                        <Label
-                            title={`Username`}
-                            className={`font-medium text-sm mb-1.5`}
-                        />
-                        <Input
-                            type={`text`}
-                            name={`full_name`}
-                            id={`full_name`}
-                            aria-label={`s_snape`}
-                            className={`form-control`}
-                            placeholder={`s_snape`}
-                            required
-                        />
-                        <p
-                            id={`username_help`}
-                            className={`italic text-xs font-medium text-gray-500 mt-1`}
-                        >
-                            *Note: Special characters cannot be used in the username.
-                        </p>
                     </div>
                     {/* Password Input */}
                     <div className={`form-group flex flex-col`}>

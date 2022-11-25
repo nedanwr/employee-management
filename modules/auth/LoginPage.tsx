@@ -20,16 +20,16 @@ export const LoginPage: NextPage = (): JSX.Element => {
                     className={`bg-zinc-900 rounded-md px-14 py-12 m-auto text-left`}
                 >
                     <h1 className={`text-3xl font-bold mb-8`}>Log In</h1>
-                    {/* Email/Password Input */}
+                    {/* Email Input */}
                     <div className={`form-group flex flex-col`}>
                         <Label
-                            title={`Email or Username`}
+                            title={`Email`}
                             className={`font-medium text-sm mb-1.5`}
                         />
                         <Input
-                            type={`text`}
-                            name={`email_username`}
-                            id={`email_username`}
+                            type={`email`}
+                            name={`email`}
+                            id={`email`}
                             aria-label={`severus@hogwarts.edu`}
                             className={`form-control`}
                             placeholder={`severus@hogwarts.edu`}
