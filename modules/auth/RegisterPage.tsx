@@ -1,8 +1,50 @@
+import React, {
+    useState,
+    FormEventHandler,
+    FormEvent,
+    ChangeEvent
+} from "react";
 import type { NextPage } from "next";
 import Head from "next/head";
-import {Button, Input, Label} from "../../ui";
+import { useRouter, NextRouter } from "next/router";
+import axios from "axios";
+import { Button, Input, Label } from "../../ui";
 
 export const RegisterPage: NextPage = (): JSX.Element => {
+    // State
+    const [loading, setLoading] = useState<boolean>(false);
+    const [email, setEmail] = useState<string>("");
+    const [fullName, setFullName] = useState<string>("");
+    const [password, setPassword] = useState<string>("");
+
+    // Router
+    const router: NextRouter = useRouter();
+
+    const handleSubmit: FormEventHandler<HTMLFormElement> = async (e: FormEvent<HTMLFormElement>) => {
+        // Prevent default form submission
+        e.preventDefault();
+
+        // Set loading state
+        setLoading(true);
+
+        // Send request to register user
+        await axios.post("/api/auth/register", {
+            email,
+            fullName,
+            password
+        })
+            .then(async (response) => {
+                // Redirect to login page
+                if (response.data.statusCode === 201) {
+                    await router.push("/auth/login/");
+                }
+            })
+            .finally(() => {
+                // Set loading state
+                setLoading(false);
+            });
+    }
+
     return (
         <>
             <Head>
@@ -14,6 +56,7 @@ export const RegisterPage: NextPage = (): JSX.Element => {
                     spellCheck={`false`}
                     noValidate={true}
                     className={`bg-zinc-900 rounded-md px-14 py-12 m-auto text-left`}
+                    onSubmit={handleSubmit}
                 >
                     <h1 className={`text-3xl font-bold mb-8`}>Create an Account</h1>
                     {/* Email Input */}
@@ -29,6 +72,10 @@ export const RegisterPage: NextPage = (): JSX.Element => {
                             aria-label={`severus@hogwarts.edu`}
                             className={`form-control`}
                             placeholder={`severus@hogwarts.edu`}
+                            value={email}
+                            onChange={
+                                (e: ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)
+                            }
                             required
                         />
                     </div>
@@ -45,6 +92,10 @@ export const RegisterPage: NextPage = (): JSX.Element => {
                             aria-label={`Severus Snape`}
                             className={`form-control`}
                             placeholder={`Severus Snape`}
+                            value={fullName}
+                            onChange={
+                                (e: ChangeEvent<HTMLInputElement>) => setFullName(e.target.value)
+                            }
                             required
                         />
                     </div>
@@ -61,6 +112,10 @@ export const RegisterPage: NextPage = (): JSX.Element => {
                             aria-label={`•••••••••••`}
                             className={`form-control`}
                             placeholder={"•••••••••••"}
+                            value={password}
+                            onChange={
+                                (e: ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)
+                            }
                             required
                         />
                         <p

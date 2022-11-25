@@ -1,3 +1,7 @@
+import React, {
+    useState,
+    ChangeEvent
+} from "react";
 import type { NextPage } from "next";
 import Head from "next/head";
 import {
@@ -7,6 +11,11 @@ import {
 } from "../../ui";
 
 export const LoginPage: NextPage = (): JSX.Element => {
+    // State
+    const [loading, setLoading] = useState<boolean>(false);
+    const [email, setEmail] = useState<string>("");
+    const [password, setPassword] = useState<string>("");
+
     return (
         <>
             <Head>
@@ -33,6 +42,10 @@ export const LoginPage: NextPage = (): JSX.Element => {
                             aria-label={`severus@hogwarts.edu`}
                             className={`form-control`}
                             placeholder={`severus@hogwarts.edu`}
+                            value={email}
+                            onChange={
+                                (e: ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)
+                            }
                             required
                         />
                     </div>
@@ -57,6 +70,10 @@ export const LoginPage: NextPage = (): JSX.Element => {
                             aria-label={`•••••••••••`}
                             className={`form-control`}
                             placeholder={"•••••••••••"}
+                            value={password}
+                            onChange={
+                                (e: ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)
+                            }
                             required
                         />
                     </div>
