@@ -1,9 +1,12 @@
 import React, {
     useState,
+    FormEventHandler,
+    FormEvent,
     ChangeEvent
 } from "react";
 import type { NextPage } from "next";
 import Head from "next/head";
+import { signIn } from "next-auth/react";
 import {
     Label,
     Input,
@@ -16,6 +19,25 @@ export const LoginPage: NextPage = (): JSX.Element => {
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
 
+    const handleSubmit: FormEventHandler<HTMLFormElement> = async (e: FormEvent<HTMLFormElement>) => {
+        // Prevent default form submission
+        e.preventDefault();
+
+        // Set loading state
+        setLoading(true);
+
+        // Sign in via credentials
+        await signIn("credentials", {
+            email,
+            password,
+            redirect: true,
+            callbackUrl: "/"
+        })
+            .catch((error: any | unknown) => {
+                throw new Error(error.message);
+            });
+    }
+
     return (
         <>
             <Head>
@@ -27,6 +49,7 @@ export const LoginPage: NextPage = (): JSX.Element => {
                     spellCheck={`false`}
                     noValidate={true}
                     className={`bg-zinc-900 rounded-md px-14 py-12 m-auto text-left`}
+                    onSubmit={handleSubmit}
                 >
                     <h1 className={`text-3xl font-bold mb-8`}>Log In</h1>
                     {/* Email Input */}
