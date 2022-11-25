@@ -14,5 +14,6 @@ Manage employees using a simple web interface.
 - [Prisma](https://www.prisma.io/)
 - [Supabase](https://supabase.com/)
 - [TailwindCSS](https://tailwindcss.com/)
+- [Vercel](https://vercel.com/)
 
 > **Note: Requires NodeJS `v16.18+` & Yarn `v1.22+`*
