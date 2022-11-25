@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { validate as validateEmail } from "email-validator";
 import { validatePassword } from "../../../utils/validatePassword";
+import { prisma } from "../../../prisma";
 
 const registerHandler = async (req: NextApiRequest, res: NextApiResponse) => {
     // Get the data from the request body
@@ -23,6 +24,25 @@ const registerHandler = async (req: NextApiRequest, res: NextApiResponse) => {
                 statusCode: 400,
                 error: "Bad Request",
                 message: "Invalid password"
+            });
+    }
+
+    // Check if email already in use
+    const emailExists = await prisma
+        .user
+        .findFirst({
+            where: {
+                email,
+            }
+        });
+
+    if (emailExists) {
+        await prisma.$disconnect();
+        return res
+            .json({
+                statusCode: 400,
+                error: "Bad Request",
+                message: "Email already exists"
             });
     }
 };
