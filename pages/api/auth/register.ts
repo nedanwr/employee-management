@@ -6,7 +6,7 @@ import bcryptjs from "bcryptjs";
 
 const registerHandler = async (req: NextApiRequest, res: NextApiResponse) => {
     // Get the data from the request body
-    const { email, full_name, password } = req.body;
+    const { email, fullName, password } = req.body;
 
     // Validate email
     if (!validateEmail(email)) {
@@ -53,7 +53,7 @@ const registerHandler = async (req: NextApiRequest, res: NextApiResponse) => {
         .create({
             data: {
                 email,
-                name: full_name,
+                name: fullName,
                 password: await bcryptjs.hash(password, 12),
                 createdAt: new Date().getTime(),
             }
