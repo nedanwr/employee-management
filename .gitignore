@@ -1,0 +1,17 @@
+# IDE Settings
+.idea
+
+# Dependencies
+node_modules
+.pnp
+.pnp.js
+
+# Next.js
+.next
+
+# Local Env
+.env
+
+# Typescript
+*.tsbuildinfo
+next-env.d.ts
