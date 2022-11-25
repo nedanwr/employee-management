@@ -26,7 +26,6 @@ enum Department {
 model User {
   id         String      @id @default(uuid())
   email      String      @unique
-  username   String      @unique
   name       String
   role       Role        @default(USER)
   department Department?
@@ -36,6 +35,5 @@ model User {
   createdAt  BigInt
   updatedAt  BigInt?
 
-  @@unique([email, username])
   @@map(name: "users")
 }
