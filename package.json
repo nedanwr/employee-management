@@ -6,7 +6,13 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "db-deploy": "prisma migrate deploy",
+    "db-migrate": "prisma migrate",
+    "db-generate": "prisma generate",
+    "db-reset": "prisma migrate reset",
+    "db-lint": "prisma format",
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@prisma/client": "^4.6.1",
